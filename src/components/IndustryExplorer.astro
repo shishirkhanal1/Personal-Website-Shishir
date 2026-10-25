@@ -1,0 +1,154 @@
+---
+const industries = [
+  {
+    id: 'education',
+    title: 'Education',
+    metric: '3.8X LEAD CONVERSION',
+    desc: 'Accelerating student enrollment funnels, course visibility, and institutional trust through targeted search and high-converting storytelling.',
+    tags: ['Student Acquisition', 'SEO & Organic', 'WhatsApp Automation']
+  },
+  {
+    id: 'healthcare',
+    title: 'Healthcare & Medtech',
+    metric: 'PATIENT TRUST ANCHORED',
+    desc: 'Compliance-first patient acquisition, telehealth awareness, and empathetic authority-building across verified digital channels.',
+    tags: ['Patient Journeys', 'Local Maps & Search', 'Doctor Authority']
+  },
+  {
+    id: 'real-estate',
+    title: 'Real Estate',
+    metric: 'QUALIFIED BUYER INTAKE',
+    desc: 'High-intent buyer generation, luxury development virtual showcase promotions, and hyper-local geo-fencing campaigns.',
+    tags: ['Geo-fencing', 'Lead Prequalification', 'Virtual Showcases']
+  },
+  {
+    id: 'tech-saas',
+    title: 'Technology & SaaS',
+    metric: '+140% MRR TRAJECTORY',
+    desc: 'PLG alignment, friction-free free trial signups, product demo funnels, and enterprise account-based marketing (ABM).',
+    tags: ['PLG Funnels', 'Product Marketing', 'Enterprise ABM']
+  },
+  {
+    id: 'insurance',
+    title: 'Insurance',
+    metric: 'HIGH VALUE RETENTION',
+    desc: 'De-mystifying policy complexity through clear educational micro-content, automated nurturing drips, and premium conversion flows.',
+    tags: ['Policy Education', 'Automated Drips', 'High-Trust Conversion']
+  },
+  {
+    id: 'ecommerce',
+    title: 'E-commerce & D2C',
+    metric: '5.2X PEAK ROAS',
+    desc: 'Omnichannel ROAS optimization, abandoned cart recovery loops, seasonal campaign surges, and retention-focused retention flows.',
+    tags: ['Creative Testing', 'TikTok & Meta Ads', 'Retention Sequences']
+  },
+  {
+    id: 'social-impact',
+    title: 'Social Impact & NGOs',
+    metric: 'COMMUNITY AMPLIFIED',
+    desc: 'Mobilizing donor communities, mission storytelling, and high-engagement global awareness campaigns with measurable social proof.',
+    tags: ['Donor Campaigns', 'Advocacy Narrative', 'Grassroots Growth']
+  }
+];
+---
+
+<div class="rounded-3xl bg-dark-900/90 border border-white/10 p-6 sm:p-8 lg:p-10 shadow-card">
+  <div class="max-w-3xl mb-8">
+    <div class="badge-cyan mb-3">
+      <span>INDUSTRIES // ASTEROID BELT</span>
+    </div>
+    <h3 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+      Broad experience. Deep expertise.
+    </h3>
+    <p class="mt-2 text-sm sm:text-base text-slate-300">
+      Every industry has its nuances. I've navigated them — bringing fresh perspective while respecting sector-specific realities. Select any sector to view specific growth dynamics:
+    </p>
+  </div>
+
+  <!-- Interactive Pill Selector -->
+  <div class="flex flex-wrap gap-2.5 sm:gap-3" id="industry-pills">
+    {industries.map((ind, index) => (
+      <button
+        type="button"
+        data-index={index}
+        class={`industry-pill flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-mono tracking-wide transition-all duration-200 border ${
+          index === 0
+            ? 'active bg-cyan text-black font-bold border-cyan shadow-glow-cyan-sm'
+            : 'bg-dark-850/80 text-slate-300 border-white/10 hover:border-cyan/50 hover:text-white'
+        }`}
+      >
+        <span class={`pill-dot w-2 h-2 rounded-full ${index === 0 ? 'bg-black' : 'bg-cyan'}`}></span>
+        <span>{ind.title}</span>
+      </button>
+    ))}
+  </div>
+
+  <!-- Telemetry Display Card -->
+  <div class="mt-8 p-6 sm:p-8 rounded-2xl bg-dark-950/80 border border-white/10 relative overflow-hidden" id="telemetry-card">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+      <div>
+        <span class="text-xs font-mono uppercase tracking-widest text-slate-400">Sector Telemetry</span>
+        <h4 id="telemetry-title" class="text-xl sm:text-2xl font-display font-bold text-white mt-1">
+          {industries[0].title}
+        </h4>
+      </div>
+      <div>
+        <div id="telemetry-metric" class="inline-flex items-center px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 font-mono text-xs sm:text-sm font-bold tracking-wider">
+          {industries[0].metric}
+        </div>
+      </div>
+    </div>
+
+    <p id="telemetry-desc" class="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed">
+      {industries[0].desc}
+    </p>
+
+    <div class="mt-6 flex flex-wrap gap-2" id="telemetry-tags">
+      {industries[0].tags.map((tag) => (
+        <span class="px-3 py-1 rounded-lg bg-dark-850 border border-white/10 text-xs font-mono text-slate-400">
+          #{tag}
+        </span>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ industries }}>
+  const pills = document.querySelectorAll('.industry-pill');
+  const titleEl = document.getElementById('telemetry-title');
+  const metricEl = document.getElementById('telemetry-metric');
+  const descEl = document.getElementById('telemetry-desc');
+  const tagsEl = document.getElementById('telemetry-tags');
+
+  pills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      const idx = parseInt(pill.getAttribute('data-index') || '0', 10);
+      const data = industries[idx];
+
+      // Reset all pills
+      pills.forEach((p) => {
+        p.classList.remove('bg-cyan', 'text-black', 'font-bold', 'border-cyan', 'shadow-glow-cyan-sm');
+        p.classList.add('bg-dark-850/80', 'text-slate-300', 'border-white/10');
+        const dot = p.querySelector('.pill-dot');
+        if (dot) dot.classList.replace('bg-black', 'bg-cyan');
+      });
+
+      // Activate current pill
+      pill.classList.remove('bg-dark-850/80', 'text-slate-300', 'border-white/10');
+      pill.classList.add('bg-cyan', 'text-black', 'font-bold', 'border-cyan', 'shadow-glow-cyan-sm');
+      const activeDot = pill.querySelector('.pill-dot');
+      if (activeDot) activeDot.classList.replace('bg-cyan', 'bg-black');
+
+      // Update telemetry display
+      if (titleEl) titleEl.textContent = data.title;
+      if (metricEl) metricEl.textContent = data.metric;
+      if (descEl) descEl.textContent = data.desc;
+
+      if (tagsEl) {
+        tagsEl.innerHTML = data.tags
+          .map((t) => `<span class="px-3 py-1 rounded-lg bg-dark-850 border border-white/10 text-xs font-mono text-slate-400">#${t}</span>`)
+          .join('');
+      }
+    });
+  });
+</script>

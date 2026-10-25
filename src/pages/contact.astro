@@ -1,0 +1,175 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+const faqs = [
+  {
+    q: 'How does an engagement with Shishir Khanal begin?',
+    a: 'Every engagement starts with an initial diagnostic consultation where we evaluate your unit economics, historical marketing performance, customer bottlenecks, and growth targets. From there, I craft a bespoke roadmap before launching execution sprints.'
+  },
+  {
+    q: 'Do you manage campaigns directly or advise in-house teams?',
+    a: 'Both. For select fast-growing brands, I directly architect and manage paid media and growth engines. For larger organizations and enterprise teams, I provide executive growth advisory, agile sprint leadership, and team mentoring.'
+  },
+  {
+    q: 'What industries do you have proven case studies in?',
+    a: 'I specialize across 7 core sectors: Higher Education & EdTech, Healthcare & Medtech, D2C & Omnichannel E-commerce, Technology & SaaS, Real Estate, Insurance, and Social Impact / Non-Profit organizations.'
+  },
+  {
+    q: 'Are you available for international projects outside Nepal?',
+    a: 'Yes. While based in Kathmandu, Nepal, I collaborate seamlessly with founders, marketing heads, and distributed teams globally across multiple timezones.'
+  }
+];
+---
+
+<Layout
+  title="Contact & Direct Line | Shishir Khanal"
+  description="Connect directly with Shishir Khanal — Digital Marketing Strategist & Growth Consultant based in Kathmandu, Nepal. Email, WhatsApp, or direct transmission."
+  currentPath="/contact"
+>
+  <!-- Page Header -->
+  <section class="pt-16 pb-16 md:pt-24 md:pb-20 border-b border-white/10 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="badge-cyan mb-3">
+          <span>LET'S CONNECT // DIRECT TRANSMISSION LINE</span>
+        </div>
+        <h1 class="text-4xl sm:text-6xl font-display font-extrabold text-white tracking-tight leading-tight">
+          Ready to create something <span class="text-gradient-cyan">meaningful</span>?
+        </h1>
+        <p class="mt-6 text-lg sm:text-xl text-slate-300 leading-relaxed font-light">
+          Whether you're building a new brand, scaling an existing business, or looking for fresh marketing perspectives — I'd love to connect. Communications line is monitored daily.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Grid -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        
+        <!-- Left Contact Information Cards -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="glass-card p-6 sm:p-8 space-y-6">
+            <h2 class="font-display font-bold text-2xl text-white">
+              Direct Communication Channels
+            </h2>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              Reach out through your preferred medium. For urgent requirements or quick syncs, WhatsApp provides the lowest latency.
+            </p>
+
+            <div class="space-y-4 pt-2 font-mono text-sm">
+              
+              <!-- Email -->
+              <a
+                href="mailto:shishirkhanal1@gmail.com"
+                class="flex items-center gap-4 p-4 rounded-xl bg-dark-950/80 border border-white/10 hover:border-cyan hover:bg-dark-900 transition-all group"
+              >
+                <span class="w-10 h-10 rounded-lg bg-cyan/10 border border-cyan/30 text-cyan flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                  ✉️
+                </span>
+                <div class="overflow-hidden">
+                  <span class="text-[11px] uppercase tracking-wider text-slate-400 block">Direct Email</span>
+                  <span class="text-white font-semibold group-hover:text-cyan transition-colors text-xs sm:text-sm truncate block">
+                    shishirkhanal1@gmail.com
+                  </span>
+                </div>
+              </a>
+
+              <!-- WhatsApp -->
+              <a
+                href="https://wa.me/9779813978652"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-4 p-4 rounded-xl bg-dark-950/80 border border-white/10 hover:border-emerald-500/50 hover:bg-dark-900 transition-all group"
+              >
+                <span class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                  💬
+                </span>
+                <div>
+                  <span class="text-[11px] uppercase tracking-wider text-slate-400 block">Phone / WhatsApp</span>
+                  <span class="text-white font-semibold group-hover:text-emerald-400 transition-colors text-xs sm:text-sm">
+                    +977 9813978652
+                  </span>
+                </div>
+              </a>
+
+              <!-- Portal -->
+              <div class="flex items-center gap-4 p-4 rounded-xl bg-dark-950/80 border border-white/10">
+                <span class="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 flex items-center justify-center text-lg">
+                  🌐
+                </span>
+                <div>
+                  <span class="text-[11px] uppercase tracking-wider text-slate-400 block">Official Portal</span>
+                  <span class="text-cyan font-semibold text-xs sm:text-sm">
+                    khanalshishir.com.np
+                  </span>
+                </div>
+              </div>
+
+              <!-- Location -->
+              <div class="flex items-center gap-4 p-4 rounded-xl bg-dark-950/80 border border-white/10">
+                <span class="w-10 h-10 rounded-lg bg-dark-850 border border-white/10 text-cyan flex items-center justify-center text-lg">
+                  📍
+                </span>
+                <div>
+                  <span class="text-[11px] uppercase tracking-wider text-slate-400 block">Location Base</span>
+                  <span class="text-white font-semibold text-xs sm:text-sm">
+                    Kathmandu, Nepal
+                  </span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Availability Card -->
+          <div class="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 font-mono text-xs text-emerald-300 space-y-2">
+            <div class="flex items-center gap-2 font-bold text-sm text-emerald-400">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+              <span>ENGAGEMENT WINDOW OPEN</span>
+            </div>
+            <p class="leading-relaxed">
+              Currently accepting selective advisory and performance marketing retainers for high-ambition brands and scale-ups.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Transmission Form -->
+        <div class="lg:col-span-7">
+          <ContactForm />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 border-t border-white/10 bg-dark-950/60">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <div class="badge-cyan mb-3">
+          <span>FREQUENTLY ASKED QUESTIONS</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
+          Collaboration Inquiries
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="glass-card p-6 rounded-2xl group transition-all duration-200 cursor-pointer">
+            <summary class="flex items-center justify-between font-display font-bold text-lg text-white list-none">
+              <span>{faq.q}</span>
+              <span class="text-cyan font-mono text-xl group-open:rotate-45 transition-transform duration-200">+</span>
+            </summary>
+            <p class="mt-4 text-sm text-slate-300 leading-relaxed font-sans border-t border-white/10 pt-4">
+              {faq.a}
+            </p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,120 @@
+---
+---
+
+<div class="glass-card p-6 sm:p-8 lg:p-10 relative">
+  <div class="flex items-center justify-between pb-6 border-b border-white/10 mb-6">
+    <div>
+      <div class="badge-cyan mb-1.5">
+        <span>ENCRYPTED TRANSMISSION DECK</span>
+      </div>
+      <h3 class="font-display text-xl sm:text-2xl font-bold text-white">
+        Send a Direct Message
+      </h3>
+    </div>
+    <div class="hidden sm:flex items-center gap-2 text-xs font-mono text-emerald-400">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span>SYSTEM READY</span>
+    </div>
+  </div>
+
+  <form id="transmission-form" class="space-y-5">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div>
+        <label for="sender-name" class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+          Your Name / Organization <span class="text-cyan">*</span>
+        </label>
+        <input
+          type="text"
+          id="sender-name"
+          name="name"
+          required
+          placeholder="e.g. Acme Corp / Jane Doe"
+          class="w-full px-4 py-3 rounded-xl bg-dark-950/80 border border-white/15 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-cyan focus:ring-1 focus:ring-cyan transition-all"
+        />
+      </div>
+
+      <div>
+        <label for="sender-email" class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+          Email Address <span class="text-cyan">*</span>
+        </label>
+        <input
+          type="email"
+          id="sender-email"
+          name="email"
+          required
+          placeholder="jane@example.com"
+          class="w-full px-4 py-3 rounded-xl bg-dark-950/80 border border-white/15 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-cyan focus:ring-1 focus:ring-cyan transition-all"
+        />
+      </div>
+    </div>
+
+    <div>
+      <label for="sender-focus" class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+        Project / Focus Area
+      </label>
+      <input
+        type="text"
+        id="sender-focus"
+        name="focus"
+        placeholder="e.g. SEO, Performance Marketing, Full-Funnel Strategy"
+        class="w-full px-4 py-3 rounded-xl bg-dark-950/80 border border-white/15 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-cyan focus:ring-1 focus:ring-cyan transition-all"
+      />
+    </div>
+
+    <div>
+      <label for="sender-message" class="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+        How can I help you grow? <span class="text-cyan">*</span>
+      </label>
+      <textarea
+        id="sender-message"
+        name="message"
+        rows="4"
+        required
+        placeholder="Briefly describe your objectives, timeframe, and current marketing friction..."
+        class="w-full px-4 py-3 rounded-xl bg-dark-950/80 border border-white/15 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-cyan focus:ring-1 focus:ring-cyan transition-all resize-y"
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      id="submit-btn"
+      class="w-full py-4 px-6 rounded-xl bg-cyan text-black font-mono font-bold text-sm tracking-wider uppercase transition-all duration-300 hover:shadow-glow-cyan hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 group cursor-pointer"
+    >
+      <span>Send Message</span>
+      <span class="group-hover:translate-x-1 transition-transform">→</span>
+    </button>
+  </form>
+
+  <!-- Success confirmation notification -->
+  <div id="form-success" class="hidden mt-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-sm font-mono flex items-center gap-3">
+    <span class="text-lg">🛰️</span>
+    <div>
+      <div class="font-bold">✓ TRANSMISSION RECEIVED</div>
+      <div class="text-xs text-emerald-400/90 mt-0.5">Thank you. Shishir will review your transmission and respond shortly.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('transmission-form') as HTMLFormElement | null;
+  const successBox = document.getElementById('form-success');
+  const submitBtn = document.getElementById('submit-btn');
+
+  if (form && successBox && submitBtn) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<span>TRANSMITTING...</span>';
+      submitBtn.setAttribute('disabled', 'true');
+
+      // Emulate swift transmission
+      setTimeout(() => {
+        form.reset();
+        submitBtn.innerHTML = originalText;
+        submitBtn.removeAttribute('disabled');
+        successBox.classList.remove('hidden');
+        successBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 700);
+    });
+  }
+</script>

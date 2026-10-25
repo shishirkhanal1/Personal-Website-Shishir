@@ -1,0 +1,245 @@
+---
+import Layout from '../layouts/Layout.astro';
+import IndustryExplorer from '../components/IndustryExplorer.astro';
+
+const engines = [
+  {
+    num: 'ENGINE 01',
+    icon: '🎯',
+    title: 'Digital Marketing Strategy',
+    badge: 'STRATEGY FIRST',
+    description: 'Developing comprehensive marketing roadmaps that align business goals with measurable outcomes.',
+    deliverables: [
+      'Comprehensive Market, Competitor & Channel Audits',
+      'Data-Grounded ICP (Ideal Customer Profile) & Persona Frameworks',
+      '360° Omnichannel Acquisition & Retention Architectures',
+      'Attribution Modeling & Executive KPI Scorecard Design'
+    ],
+    highlight: 'MEASURABLE ROADMAPS'
+  },
+  {
+    num: 'ENGINE 02',
+    icon: '📈',
+    title: 'Performance Marketing',
+    badge: 'PAID AD ENGINE',
+    description: 'Planning and managing paid advertising campaigns across Meta, Google, TikTok, LinkedIn, and other digital platforms.',
+    deliverables: [
+      'Omnichannel Paid Media Strategy & Budget Allocation',
+      'Rapid High-Frequency Creative Testing Engine',
+      'Precision Audience Micro-Segmentation & Retargeting Loops',
+      'Bid Management, CAC Reduction & ROAS Maximization'
+    ],
+    highlight: 'HIGH ROAS'
+  },
+  {
+    num: 'ENGINE 03',
+    icon: '🛡️',
+    title: 'Brand Building',
+    badge: 'CATEGORY AUTHORITY',
+    description: 'Creating strong brand positioning, messaging frameworks, and communication strategies that stand out in competitive markets.',
+    deliverables: [
+      'Category Distinction & Value Proposition Blueprints',
+      'Strategic Messaging Hierarchies & Brand Voice Playbooks',
+      'Trust Signal Engineering & Reputation Management',
+      'Omnichannel Visual & Communication Cohesion'
+    ],
+    highlight: 'MESSAGING FRAMES'
+  },
+  {
+    num: 'ENGINE 04',
+    icon: '✍️',
+    title: 'Content & Storytelling',
+    badge: 'NARRATIVE RESONANCE',
+    description: 'Transforming complex ideas into compelling content that educates, inspires, and converts audiences.',
+    deliverables: [
+      'Multi-Format Content Strategy (Video, Written, Social)',
+      'High-Conversion Educational Micro-Assets & Lead Magnets',
+      'Customer Hero Narratives & Social Proof Engines',
+      'Search-Optimized Topical Authority Architectures'
+    ],
+    highlight: 'AUDIENCE CONVERSION'
+  },
+  {
+    num: 'ENGINE 05',
+    icon: '🚀',
+    title: 'Team Leadership',
+    badge: 'AGILE SPRINT UNITS',
+    description: 'Building, mentoring, and managing high-performing marketing teams that drive sustainable growth.',
+    deliverables: [
+      'Sprint-Based Agile Marketing Workflows & Daily Standups',
+      'Talent Upskilling, Media Buyer & Content Creator Mentorship',
+      'SOP Standardization for Effortless Delegation',
+      'Executive Leadership Briefings & Quarterly Roadmapping'
+    ],
+    highlight: 'TALENT MENTORSHIP'
+  },
+  {
+    num: 'ENGINE 06',
+    icon: '🔮',
+    title: 'Business Growth Consulting',
+    badge: 'SUSTAINABLE SCALE',
+    description: 'Helping organizations identify opportunities, optimize marketing processes, and scale effectively.',
+    deliverables: [
+      'Conversion Rate Optimization (CRO) & User Journey Audits',
+      'Funnel Leak Diagnostic Testing & Friction Elimination',
+      'Automated WhatsApp & Email Lead Nurturing Loops',
+      'Customer LTV Expansion & Post-Purchase Retention Flows'
+    ],
+    highlight: 'FUNNEL DIAGNOSTICS'
+  }
+];
+---
+
+<Layout
+  title="Services & Propulsion Engines | Shishir Khanal"
+  description="Explore Shishir Khanal's 6 Core Marketing Propulsion Engines: Digital Strategy, Performance Ads, Brand Building, Storytelling, Leadership, and Growth Consulting."
+  currentPath="/services"
+>
+  <!-- Page Header -->
+  <section class="pt-16 pb-16 md:pt-24 md:pb-20 border-b border-white/10 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="badge-cyan mb-3">
+          <span>WHAT I DO // 6 CORE PROPULSION ENGINES</span>
+        </div>
+        <h1 class="text-4xl sm:text-6xl font-display font-extrabold text-white tracking-tight leading-tight">
+          End-to-end marketing, from <span class="text-gradient-cyan">strategy</span> to execution.
+        </h1>
+        <p class="mt-6 text-lg sm:text-xl text-slate-300 leading-relaxed font-light">
+          Whether you need a full-scale growth roadmap or precision optimization of your paid media funnels, each service engine is built to eliminate friction and generate measurable momentum.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 Engines Detailed Grid -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="space-y-12">
+        {engines.map((eng) => (
+          <div class="glass-card p-8 sm:p-10 lg:p-12 hover:border-cyan/40 transition-all duration-300 relative group overflow-hidden">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              
+              <!-- Left Engine Header -->
+              <div class="lg:col-span-5 space-y-4">
+                <div class="flex items-center gap-3">
+                  <span class="text-3xl p-3 rounded-2xl bg-dark-850 border border-white/10">{eng.icon}</span>
+                  <div>
+                    <span class="text-xs font-mono font-bold text-cyan tracking-widest uppercase">{eng.num}</span>
+                    <h2 class="text-2xl sm:text-3xl font-display font-bold text-white group-hover:text-cyan transition-colors">
+                      {eng.title}
+                    </h2>
+                  </div>
+                </div>
+
+                <p class="text-base text-slate-300 leading-relaxed pt-2">
+                  {eng.description}
+                </p>
+
+                <div class="pt-2 flex flex-wrap gap-2">
+                  <span class="px-3 py-1 rounded-full bg-cyan/10 border border-cyan/30 text-cyan text-xs font-mono font-bold">
+                    {eng.badge}
+                  </span>
+                  <span class="px-3 py-1 rounded-full bg-dark-800 border border-white/10 text-slate-300 text-xs font-mono">
+                    {eng.highlight}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Right Engine Deliverables -->
+              <div class="lg:col-span-7 bg-dark-950/70 p-6 sm:p-8 rounded-2xl border border-white/10">
+                <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400 mb-4 font-bold">
+                  Key Deliverables & Capabilities:
+                </h4>
+                <ul class="space-y-3">
+                  {eng.deliverables.map((item) => (
+                    <li class="flex items-start gap-3 text-sm text-slate-200">
+                      <span class="text-cyan font-bold mt-0.5">✓</span>
+                      <span class="leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+            </div>
+
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Asteroid Belt Component -->
+  <section class="py-16 border-t border-white/10 bg-dark-950/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <IndustryExplorer />
+    </div>
+  </section>
+
+  <!-- Flight Sequence / 3-Stage Process -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="badge-cyan mb-3">
+          <span>THE PROPULSION METHODOLOGY</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
+          Research First. Strategy Next. Execution Always.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-8 rounded-2xl bg-dark-900 border border-white/10 relative">
+          <div class="text-4xl font-mono font-extrabold text-cyan/30 mb-4">01</div>
+          <span class="text-xs font-mono uppercase text-cyan font-bold">Phase 01</span>
+          <h3 class="text-2xl font-display font-bold text-white mt-1">Research & Audit</h3>
+          <p class="mt-3 text-sm text-slate-300 leading-relaxed">
+            Every successful campaign starts with understanding people, markets, and opportunities. Data before assumptions. Full telemetry on unit economics and historical drag.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-dark-900 border border-white/10 relative">
+          <div class="text-4xl font-mono font-extrabold text-cyan/30 mb-4">02</div>
+          <span class="text-xs font-mono uppercase text-cyan font-bold">Phase 02</span>
+          <h3 class="text-2xl font-display font-bold text-white mt-1">Architecture & Strategy</h3>
+          <p class="mt-3 text-sm text-slate-300 leading-relaxed">
+            I combine data-driven insights with creative thinking to develop marketing solutions built for the real world. Clear attribution models, message pillars, and ad hooks.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-dark-900 border border-white/10 relative">
+          <div class="text-4xl font-mono font-extrabold text-cyan/30 mb-4">03</div>
+          <span class="text-xs font-mono uppercase text-cyan font-bold">Phase 03</span>
+          <h3 class="text-2xl font-display font-bold text-white mt-1">Execution & Scale</h3>
+          <p class="mt-3 text-sm text-slate-300 leading-relaxed">
+            Ideas are only as good as their execution. I work closely with teams to ensure strategy translates into results. Rapid iterative feedback loops and scale.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="py-20 border-t border-white/10 bg-dark-950/80 text-center">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <div class="badge-emerald">
+        <span>READY FOR PROPULSION?</span>
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-white">
+        Deploy an engine tailored to your market.
+      </h2>
+      <p class="text-base text-slate-300 max-w-xl mx-auto">
+        Let's diagnose your current marketing friction and architect a growth trajectory with zero gravitational drag.
+      </p>
+      <div>
+        <a
+          href="/contact"
+          class="px-8 py-4 rounded-xl bg-cyan text-black font-mono font-bold text-sm uppercase tracking-wider hover:shadow-glow-cyan transition-all inline-block"
+        >
+          Initialize Transmission →
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

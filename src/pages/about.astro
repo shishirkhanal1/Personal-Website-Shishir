@@ -1,0 +1,286 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StatCounter from '../components/StatCounter.astro';
+
+const principles = [
+  {
+    num: '01',
+    title: 'People Over Platforms',
+    desc: 'Algorithms and ad tools change weekly. Human psychology, emotional resonance, and trust fundamentals remain constant. Marketing succeeds when it speaks to real human needs.'
+  },
+  {
+    num: '02',
+    title: 'Data-Driven Intuition',
+    desc: 'Creativity without analytics is guesswork; analytics without creative empathy is robotic. Sustainable growth occurs at the intersection of rigorous telemetry and compelling narrative.'
+  },
+  {
+    num: '03',
+    title: 'Full-Funnel Cohesion',
+    desc: 'Great traffic is wasted if landing pages confuse or retention sequences fail. Every touchpoint — from top-of-funnel TikTok views to WhatsApp post-purchase journeys — must harmonize.'
+  },
+  {
+    num: '04',
+    title: 'Agile Defiance of Inertia',
+    desc: 'Traditional agency bureaucracy creates gravitational drag. I build lean, high-velocity sprint frameworks that test rapidly, eliminate inefficiencies, and scale winning angles fast.'
+  }
+];
+
+const milestones = [
+  {
+    era: 'Current',
+    role: 'Digital Marketing Strategist & Growth Consultant',
+    context: 'Independent & Strategic Advisory // Kathmandu, Nepal',
+    points: [
+      'Architecting omnichannel customer acquisition engines across 7+ core industries',
+      'Scaling paid performance across Meta, Google Ads, TikTok, and LinkedIn with 3.8x - 5.2x ROAS',
+      'Advising founders and marketing executives on team structures, attribution models, and conversion funnels'
+    ]
+  },
+  {
+    era: 'Leadership & Team Building',
+    role: 'Marketing Lead & Growth Strategist',
+    context: 'Startups, D2C Brands & EdTech Institutions',
+    points: [
+      'Built and mentored high-velocity marketing units spanning content, media buying, and SEO',
+      'Engineered automated lead nurturing architectures that cut lead acquisition costs by over 40%',
+      'Directed multi-channel institutional brand campaigns reaching millions of prospective applicants'
+    ]
+  },
+  {
+    era: 'Foundations',
+    role: 'Performance Marketer & Content Specialist',
+    context: 'Digital Agencies & Tech Ventures',
+    points: [
+      'Executed hundreds of data-backed ad experiments, audience segmentations, and A/B split tests',
+      'Mastered technical and organic SEO strategies for localized authority and high-intent buyer capture',
+      'Penned persuasive copy and produced storytelling campaigns that converted high-friction services'
+    ]
+  }
+];
+---
+
+<Layout
+  title="About Shishir Khanal | Digital Marketing Strategist & Growth Consultant"
+  description="Learn more about Shishir Khanal — his philosophy, experience leading marketing teams, and background across startups, healthcare, education, and e-commerce in Nepal."
+  currentPath="/about"
+>
+  <!-- Page Header -->
+  <section class="pt-16 pb-16 md:pt-24 md:pb-20 border-b border-white/10 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="badge-cyan mb-3">
+          <span>ABOUT ME // THE ANTIGRAVITY THEORY</span>
+        </div>
+        <h1 class="text-4xl sm:text-6xl font-display font-extrabold text-white tracking-tight leading-tight">
+          Marketing is about <span class="text-gradient-cyan">people</span>, not platforms.
+        </h1>
+        <p class="mt-6 text-lg sm:text-xl text-slate-300 leading-relaxed font-light">
+          I'm <strong class="text-white font-semibold">Shishir Khanal</strong>, a digital marketing professional passionate about connecting brands with people through meaningful strategy, data rigor, and storytelling.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Narrative & Bio Grid -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        
+        <!-- Profile Picture & Fast Facts -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="relative rounded-3xl bg-dark-900 border border-white/15 p-4 sm:p-5 shadow-2xl">
+            <div class="relative aspect-[4/5] rounded-2xl overflow-hidden bg-dark-950 border border-white/10">
+              <img
+                src="/images/shishir-profile.jpg"
+                alt="Shishir Khanal"
+                class="w-full h-full object-cover object-top"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/20 to-transparent"></div>
+              
+              <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-dark-950/90 backdrop-blur-md border border-white/15">
+                <div class="text-xs font-mono text-cyan uppercase tracking-wider">Focus</div>
+                <div class="text-base font-display font-bold text-white mt-0.5">360° Omnichannel Growth</div>
+                <div class="text-xs font-mono text-slate-400 mt-1">Based in Kathmandu, Nepal // Global Reach</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick facts widget -->
+          <div class="glass-card p-6 space-y-3 font-mono text-xs">
+            <div class="text-slate-400 uppercase tracking-widest pb-2 border-b border-white/10 text-[11px]">
+              Profile Telemetry
+            </div>
+            <div class="flex justify-between py-1 border-b border-white/5">
+              <span class="text-slate-400">Strategist:</span>
+              <span class="text-white font-semibold">Shishir Khanal</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-white/5">
+              <span class="text-slate-400">Headquarters:</span>
+              <span class="text-white">Kathmandu, Nepal</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-white/5">
+              <span class="text-slate-400">Industries Scaled:</span>
+              <span class="text-cyan font-bold">7+ Sectors</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-white/5">
+              <span class="text-slate-400">Key Specialization:</span>
+              <span class="text-emerald-400">Performance & Full-Funnel</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-slate-400">Availability:</span>
+              <span class="text-emerald-400 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                Open for Engagements
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Full Story & Philosophy Details -->
+        <div class="lg:col-span-7 space-y-8 text-base text-slate-300 leading-relaxed">
+          
+          <div class="space-y-4">
+            <h2 class="text-2xl sm:text-3xl font-display font-bold text-white tracking-tight">
+              The Journey from Tactical Execution to Strategic Propulsion
+            </h2>
+            <p>
+              My journey has taken me from creating content and managing campaigns to <strong class="text-white">leading marketing teams</strong> and developing comprehensive growth strategies for startups, established businesses, educational institutions, and national-level organizations.
+            </p>
+            <p>
+              With experience spanning industries from education and healthcare to e-commerce and social impact, I bring a broad perspective — and a deep commitment to results — to every engagement.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-dark-900/90 border-l-4 border-cyan border-y border-r border-white/10">
+            <p class="font-display italic text-lg text-white leading-relaxed">
+              “Great marketing isn't about selling more — it's about creating meaningful connections.”
+            </p>
+            <span class="block mt-2 font-mono text-xs text-cyan uppercase tracking-wider font-bold">
+              — Shishir Khanal
+            </span>
+          </div>
+
+          <div class="space-y-4">
+            <h3 class="text-xl font-display font-bold text-white">
+              Data-Driven Rigor Meets Creative Resonance
+            </h3>
+            <p>
+              I believe that the best marketing systems combine <strong class="text-white">data-driven insight</strong> with <strong class="text-white">genuine creative thinking</strong>. Not campaigns that simply look good, but campaigns that build trust, create lasting brand equity, and deliver measurable outcomes.
+            </p>
+            <p>
+              In an era overwhelmed by generic AI copy and bloated ad budgets, standing out requires clear positioning, friction-free customer conversion pathways, and honest storytelling that respects the intelligence of your customer.
+            </p>
+          </div>
+
+          <!-- CTAs -->
+          <div class="pt-4 flex flex-wrap items-center gap-4">
+            <a
+              href="/services"
+              class="px-6 py-3 rounded-xl bg-cyan text-black font-mono font-bold text-xs uppercase tracking-wider hover:shadow-glow-cyan transition-all"
+            >
+              Explore Propulsion Engines
+            </a>
+            <a
+              href="/contact"
+              class="px-6 py-3 rounded-xl bg-dark-900 border border-white/15 text-white font-mono font-bold text-xs uppercase tracking-wider hover:border-cyan hover:text-cyan transition-all"
+            >
+              Initiate Transmission
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Numbers -->
+  <section class="py-16 border-y border-white/10 bg-dark-950/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <StatCounter />
+    </div>
+  </section>
+
+  <!-- Core Operating Principles -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-14">
+        <div class="badge-cyan mb-3">
+          <span>OPERATING DOCTRINE</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight">
+          How I Think About Growth.
+        </h2>
+        <p class="mt-3 text-base text-slate-300">
+          Four foundational pillars that guide every client engagement and growth roadmap.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {principles.map((pr) => (
+          <div class="glass-card-hover p-8 relative">
+            <div class="font-mono text-2xl font-extrabold text-cyan mb-3">{pr.num}</div>
+            <h3 class="font-display font-bold text-xl text-white mb-2">{pr.title}</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">{pr.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Career Trajectory & Milestones -->
+  <section class="py-20 border-t border-white/10 bg-dark-950/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-14">
+        <div class="badge-emerald mb-3">
+          <span>TRACK RECORD // TRAJECTORY</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight">
+          Experience Across the Growth Spectrum.
+        </h2>
+      </div>
+
+      <div class="space-y-8">
+        {milestones.map((m) => (
+          <div class="glass-card p-8 border-l-4 border-l-cyan">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-white/10">
+              <div>
+                <span class="text-xs font-mono text-cyan uppercase font-bold tracking-wider">{m.era}</span>
+                <h3 class="text-xl sm:text-2xl font-display font-bold text-white mt-1">{m.role}</h3>
+                <div class="text-xs font-mono text-slate-400 mt-0.5">{m.context}</div>
+              </div>
+            </div>
+            <ul class="mt-6 space-y-2.5">
+              {m.points.map((pt) => (
+                <li class="flex items-start gap-3 text-sm text-slate-300">
+                  <span class="text-cyan font-mono text-xs mt-1">▸</span>
+                  <span>{pt}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="py-20 text-center">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
+        Let's build a campaign that moves the needle.
+      </h2>
+      <p class="text-base text-slate-300">
+        Ready to assess your marketing funnels or launch an aggressive new acquisition campaign?
+      </p>
+      <div>
+        <a
+          href="/contact"
+          class="px-8 py-3.5 rounded-xl bg-cyan text-black font-mono font-bold text-sm uppercase tracking-wider hover:shadow-glow-cyan transition-all inline-block"
+        >
+          Book a Growth Consultation →
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

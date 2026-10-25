@@ -1,0 +1,131 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="relative bg-dark-950 border-t border-white/10 pt-16 pb-12 overflow-hidden text-slate-400">
+  <!-- Glowing subtle accents -->
+  <div class="absolute top-0 left-1/4 w-96 h-96 bg-cyan/5 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-indigo/5 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-12 border-b border-white/10">
+      
+      <!-- Brand & Mission Column -->
+      <div class="lg:col-span-5 space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="flex items-center justify-center w-10 h-10 rounded-xl bg-dark-900 border border-white/15 text-cyan font-mono font-bold text-base shadow-glow-cyan-sm">
+            SK
+          </div>
+          <span class="font-display font-bold text-xl text-white tracking-wide">
+            Shishir Khanal
+          </span>
+        </div>
+        
+        <p class="text-sm text-slate-300 leading-relaxed pr-6">
+          Digital Marketing Strategist & Growth Consultant based in Kathmandu, Nepal. Helping businesses, startups, and institutions transform ideas into measurable growth through strategy, creative performance marketing, and digital innovation.
+        </p>
+
+        <!-- Availability badge -->
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Available for New Growth Engagements</span>
+        </div>
+      </div>
+
+      <!-- Quick Navigation -->
+      <div class="lg:col-span-2 space-y-4">
+        <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-white">
+          Navigation
+        </h4>
+        <ul class="space-y-2.5 text-sm">
+          <li>
+            <a href="/" class="hover:text-cyan transition-colors">Home</a>
+          </li>
+          <li>
+            <a href="/about" class="hover:text-cyan transition-colors">About & Philosophy</a>
+          </li>
+          <li>
+            <a href="/services" class="hover:text-cyan transition-colors">Propulsion Engines</a>
+          </li>
+          <li>
+            <a href="/contact" class="hover:text-cyan transition-colors">Contact & Transmit</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Core Services List -->
+      <div class="lg:col-span-2 space-y-4">
+        <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-white">
+          Expertise
+        </h4>
+        <ul class="space-y-2.5 text-xs font-mono text-slate-400">
+          <li>Digital Strategy</li>
+          <li>Performance Marketing</li>
+          <li>Brand Positioning</li>
+          <li>Content Storytelling</li>
+          <li>SEO Optimization</li>
+          <li>Growth Diagnostics</li>
+        </ul>
+      </div>
+
+      <!-- Direct Contacts Column -->
+      <div class="lg:col-span-3 space-y-4">
+        <h4 class="font-mono text-xs font-bold uppercase tracking-wider text-white">
+          Direct Line
+        </h4>
+        <div class="space-y-3 text-sm font-mono">
+          <a
+            href="mailto:shishirkhanal1@gmail.com"
+            class="flex items-center gap-2.5 text-slate-300 hover:text-cyan transition-colors group"
+          >
+            <span class="p-2 rounded-lg bg-dark-900 border border-white/10 group-hover:border-cyan text-cyan">
+              ✉️
+            </span>
+            <span class="break-all text-xs">shishirkhanal1@gmail.com</span>
+          </a>
+
+          <a
+            href="https://wa.me/9779813978652"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2.5 text-slate-300 hover:text-emerald-400 transition-colors group"
+          >
+            <span class="p-2 rounded-lg bg-dark-900 border border-white/10 group-hover:border-emerald-500 text-emerald-400">
+              💬
+            </span>
+            <span class="text-xs">+977 9813978652 (WhatsApp)</span>
+          </a>
+
+          <div class="flex items-center gap-2.5 text-slate-300">
+            <span class="p-2 rounded-lg bg-dark-900 border border-white/10 text-cyan">
+              📍
+            </span>
+            <span class="text-xs">Kathmandu, Nepal</span>
+          </div>
+
+          <div class="flex items-center gap-2.5 text-slate-300">
+            <span class="p-2 rounded-lg bg-dark-900 border border-white/10 text-cyan">
+              🌐
+            </span>
+            <span class="text-xs">khanalshishir.com.np</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom credits and return link -->
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
+      <p class="text-slate-400 text-center sm:text-left">
+        © {currentYear} <span class="text-white font-semibold">Shishir Khanal</span>. All rights reserved. Defying gravitational friction in digital growth.
+      </p>
+
+      <div class="flex items-center gap-4">
+        <a href="#top" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-dark-900 border border-white/10 text-slate-300 hover:text-cyan hover:border-cyan transition-all">
+          <span>RETURN TO ORBIT</span>
+          <span class="text-cyan">▲</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

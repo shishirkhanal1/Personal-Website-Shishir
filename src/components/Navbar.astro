@@ -1,0 +1,175 @@
+---
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
+
+const navLinks = [
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Services', href: '/services' },
+  { name: 'Contact', href: '/contact' },
+];
+
+const isActive = (path: string) => {
+  if (path === '/' && (currentPath === '/' || currentPath === '')) return true;
+  if (path !== '/' && currentPath.startsWith(path)) return true;
+  return false;
+};
+---
+
+<header class="sticky top-0 z-50 w-full border-b border-white/10 bg-dark-950/85 backdrop-blur-xl transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Logo / Personal Brand Monogram -->
+      <a href="/" class="flex items-center gap-3 group" aria-label="Shishir Khanal Home">
+        <div class="relative flex items-center justify-center w-11 h-11 rounded-xl bg-dark-900 border border-white/15 text-cyan font-mono font-bold text-lg tracking-wider transition-all duration-300 group-hover:border-cyan group-hover:shadow-glow-cyan">
+          <span>SK</span>
+          <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-cyan animate-pulse"></span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display font-bold text-base tracking-wide text-white group-hover:text-cyan transition-colors">
+            Shishir Khanal
+          </span>
+          <span class="text-[11px] font-mono uppercase tracking-wider text-slate-400 group-hover:text-slate-300 transition-colors">
+            Growth Consultant
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-1 bg-dark-900/60 p-1.5 rounded-full border border-white/10">
+        {navLinks.map((link) => {
+          const active = isActive(link.href);
+          return (
+            <a
+              href={link.href}
+              class={`relative px-5 py-2 rounded-full text-sm font-medium tracking-wide transition-all duration-200 ${
+                active
+                  ? 'bg-cyan text-black font-semibold shadow-glow-cyan-sm'
+                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              {link.name}
+            </a>
+          );
+        })}
+      </nav>
+
+      <!-- Right CTAs & Contact quick-dial -->
+      <div class="hidden md:flex items-center gap-4">
+        <a
+          href="https://wa.me/9779813978652"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-emerald-400 transition-colors py-2 px-3 rounded-lg border border-white/5 hover:border-emerald-500/30"
+          title="Direct WhatsApp"
+        >
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span>WhatsApp</span>
+        </a>
+
+        <a
+          href="/contact"
+          class="relative inline-flex items-center justify-center px-5 py-2.5 text-xs font-mono font-bold tracking-wider uppercase text-black bg-cyan rounded-xl transition-all duration-300 hover:shadow-glow-cyan hover:scale-[1.02] active:scale-[0.98]"
+        >
+          <span>Hire Me</span>
+          <svg class="w-3.5 h-3.5 ml-1.5 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="flex md:hidden items-center gap-3">
+        <a
+          href="/contact"
+          class="text-xs font-mono font-bold uppercase px-3 py-1.5 bg-cyan text-black rounded-lg"
+        >
+          Hire Me
+        </a>
+        <button
+          id="mobile-menu-btn"
+          type="button"
+          aria-label="Toggle mobile menu"
+          class="p-2.5 rounded-xl bg-dark-900 border border-white/10 text-slate-300 hover:text-white hover:border-cyan focus:outline-none"
+        >
+          <svg id="hamburger-icon" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="close-icon" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-b border-white/10 bg-dark-950/98 backdrop-blur-2xl px-4 pt-3 pb-6">
+    <div class="flex flex-col gap-2">
+      {navLinks.map((link) => {
+        const active = isActive(link.href);
+        return (
+          <a
+            href={link.href}
+            class={`px-4 py-3 rounded-xl text-base font-medium tracking-wide transition-all ${
+              active
+                ? 'bg-cyan text-black font-semibold'
+                : 'text-slate-200 hover:bg-white/5 hover:text-cyan'
+            }`}
+          >
+            {link.name}
+          </a>
+        );
+      })}
+      
+      <div class="pt-4 mt-2 border-t border-white/10 flex flex-col gap-3">
+        <a
+          href="https://wa.me/9779813978652"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-between px-4 py-3 rounded-xl bg-dark-900 border border-emerald-500/30 text-emerald-400 font-mono text-sm"
+        >
+          <span class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span>WhatsApp Direct</span>
+          </span>
+          <span>+977 9813978652</span>
+        </a>
+        <a
+          href="mailto:shishirkhanal1@gmail.com"
+          class="flex items-center justify-between px-4 py-3 rounded-xl bg-dark-900 border border-white/10 text-slate-300 font-mono text-sm hover:text-cyan"
+        >
+          <span>Email</span>
+          <span>shishirkhanal1@gmail.com</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const hamburger = document.getElementById('hamburger-icon');
+  const close = document.getElementById('close-icon');
+
+  if (btn && menu && hamburger && close) {
+    btn.addEventListener('click', () => {
+      const isExpanded = !menu.classList.contains('hidden');
+      if (isExpanded) {
+        menu.classList.add('hidden');
+        hamburger.classList.remove('hidden');
+        close.classList.add('hidden');
+      } else {
+        menu.classList.remove('hidden');
+        hamburger.classList.add('hidden');
+        close.classList.remove('hidden');
+      }
+    });
+  }
+</script>

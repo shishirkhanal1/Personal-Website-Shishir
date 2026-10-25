@@ -1,0 +1,36 @@
+---
+const stats = [
+  { value: '7', suffix: '+', label: 'Industries Scaled', desc: 'EdTech, Health, D2C & SaaS' },
+  { value: '150', suffix: '+', label: 'Campaigns Launched', desc: 'Meta, Google, TikTok, LinkedIn' },
+  { value: '45', suffix: '+', label: 'Strategic Roadmaps', desc: 'Bespoke end-to-end architectures' },
+  { value: '360', suffix: '°', label: 'Full-Funnel Scope', desc: 'Awareness to Retention Drips' },
+];
+---
+
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+  {stats.map((stat, idx) => (
+    <div class="relative group p-6 rounded-2xl bg-dark-900/90 border border-white/10 hover:border-cyan/40 transition-all duration-300 hover:shadow-glow-cyan-sm hover:-translate-y-1">
+      <div class="flex items-baseline gap-1 font-mono">
+        <span class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white group-hover:text-cyan transition-colors">
+          {stat.value}
+        </span>
+        <span class="text-2xl sm:text-3xl font-bold text-cyan">
+          {stat.suffix}
+        </span>
+      </div>
+
+      <div class="mt-3 font-display font-semibold text-slate-100 text-sm sm:text-base tracking-wide">
+        {stat.label}
+      </div>
+
+      <div class="mt-1 text-xs font-mono text-slate-400">
+        {stat.desc}
+      </div>
+
+      <!-- Accent corner highlight -->
+      <div class="absolute top-0 right-0 w-8 h-8 overflow-hidden rounded-tr-2xl pointer-events-none">
+        <div class="absolute -top-4 -right-4 w-8 h-8 bg-cyan/20 rotate-45 group-hover:bg-cyan/40 transition-colors"></div>
+      </div>
+    </div>
+  ))}
+</div>
