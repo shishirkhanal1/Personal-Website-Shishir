@@ -20,12 +20,25 @@ const faqs = [
     a: 'Yes. While based in Kathmandu, Nepal, I collaborate seamlessly with founders, marketing heads, and distributed teams globally across multiple timezones.'
   }
 ];
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((f) => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": f.a
+    }
+  }))
+};
 ---
 
 <Layout
-  title="Contact & Direct Line | Shishir Khanal"
-  description="Connect directly with Shishir Khanal — Digital Marketing Strategist & Growth Consultant based in Kathmandu, Nepal. Email, WhatsApp, or direct transmission."
+  title="Contact Shishir Khanal | Hire Growth Consultant & Digital Marketer in Nepal"
+  description="Connect directly with Shishir Khanal — Digital Marketing Strategist & Growth Consultant based in Kathmandu, Nepal. Contact via Email, WhatsApp, or direct transmission."
   currentPath="/contact"
+  schema={faqSchema}
 >
   <!-- Page Header -->
   <section class="pt-16 pb-16 md:pt-24 md:pb-20 border-b border-white/10 relative overflow-hidden">

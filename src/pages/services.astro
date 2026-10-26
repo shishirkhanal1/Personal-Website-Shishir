@@ -88,12 +88,30 @@ const engines = [
     highlight: 'FUNNEL DIAGNOSTICS'
   }
 ];
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Shishir Khanal Marketing Propulsion Engines",
+  "itemListElement": engines.map((eng, idx) => ({
+    "@type": "Service",
+    "position": idx + 1,
+    "name": eng.title,
+    "description": eng.description,
+    "provider": {
+      "@type": "Person",
+      "name": "Shishir Khanal",
+      "url": "https://khanalshishir.com.np"
+    },
+    "areaServed": "Worldwide"
+  }))
+};
 ---
 
 <Layout
-  title="Services & Propulsion Engines | Shishir Khanal"
+  title="Digital Marketing Services & Growth Consulting | Shishir Khanal"
   description="Explore Shishir Khanal's 6 Core Marketing Propulsion Engines: Digital Strategy, Performance Ads, Brand Building, Storytelling, Leadership, and Growth Consulting."
   currentPath="/services"
+  schema={serviceSchema}
 >
   <!-- Page Header -->
   <section class="pt-16 pb-16 md:pt-24 md:pb-20 border-b border-white/10 relative overflow-hidden">

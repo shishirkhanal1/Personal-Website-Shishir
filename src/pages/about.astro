@@ -57,12 +57,28 @@ const milestones = [
     ]
   }
 ];
+const profilePageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "Shishir Khanal",
+    "url": "https://khanalshishir.com.np/about",
+    "image": "https://khanalshishir.com.np/images/shishir-profile.jpg",
+    "jobTitle": "Growth Consultant & Digital Marketing Strategist",
+    "sameAs": [
+      "https://wa.me/9779813978652",
+      "https://github.com/shishirkhanal1"
+    ]
+  }
+};
 ---
 
 <Layout
   title="About Shishir Khanal | Digital Marketing Strategist & Growth Consultant"
-  description="Learn more about Shishir Khanal — his philosophy, experience leading marketing teams, and background across startups, healthcare, education, and e-commerce in Nepal."
+  description="Learn about Shishir Khanal — his philosophy, experience leading marketing teams, and background across startups, healthcare, education, and e-commerce in Nepal."
   currentPath="/about"
+  schema={profilePageSchema}
 >
   <!-- Page Header -->
   <section class="pt-16 pb-16 md:pt-24 md:pb-20 border-b border-white/10 relative overflow-hidden">
@@ -92,7 +108,11 @@ const milestones = [
             <div class="relative aspect-[4/5] rounded-2xl overflow-hidden bg-dark-950 border border-white/10">
               <img
                 src="/images/shishir-profile.jpg"
-                alt="Shishir Khanal"
+                alt="Shishir Khanal - Digital Marketing Strategist and Growth Consultant in Nepal"
+                width="400"
+                height="500"
+                loading="lazy"
+                decoding="async"
                 class="w-full h-full object-cover object-top"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/20 to-transparent"></div>

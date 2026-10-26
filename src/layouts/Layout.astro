@@ -3,21 +3,148 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
 interface Props {
   title?: string;
   description?: string;
   image?: string;
   currentPath?: string;
+  type?: 'website' | 'profile' | 'article';
+  keywords?: string;
+  schema?: Record<string, any> | Record<string, any>[];
+  breadcrumbs?: BreadcrumbItem[];
 }
 
 const {
   title = "Shishir Khanal | Digital Marketing Strategist & Growth Consultant in Nepal",
-  description = "Shishir Khanal is a Digital Marketing Strategist and Growth Consultant in Kathmandu, Nepal helping brands grow through strategy, performance marketing, SEO, and storytelling.",
+  description = "Shishir Khanal is a Digital Marketing Strategist and Growth Consultant in Kathmandu, Nepal helping businesses, startups, and institutions scale through performance marketing, full-funnel strategy, and SEO.",
   image = "/images/shishir-profile.jpg",
   currentPath = Astro.url.pathname,
+  type = "website",
+  keywords = "Shishir Khanal, digital marketing Nepal, marketing strategist Kathmandu, growth consultant Nepal, SEO Nepal, performance marketing Nepal, brand building Nepal, content strategy, Meta ads Nepal, Google ads Nepal, khanalshishir.com.np",
+  schema,
+  breadcrumbs,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, 'https://khanalshishir.com.np');
+const siteUrl = 'https://khanalshishir.com.np';
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+const ogImageUrl = new URL(image, siteUrl).toString();
+
+// Generate dynamic breadcrumb schema
+const defaultBreadcrumbs: BreadcrumbItem[] = [
+  { name: 'Home', url: siteUrl }
+];
+
+if (currentPath.startsWith('/about')) {
+  defaultBreadcrumbs.push({ name: 'About', url: `${siteUrl}/about` });
+} else if (currentPath.startsWith('/services')) {
+  defaultBreadcrumbs.push({ name: 'Services', url: `${siteUrl}/services` });
+} else if (currentPath.startsWith('/contact')) {
+  defaultBreadcrumbs.push({ name: 'Contact', url: `${siteUrl}/contact` });
+}
+
+const activeBreadcrumbs = breadcrumbs || defaultBreadcrumbs;
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": activeBreadcrumbs.map((crumb, idx) => ({
+    "@type": "ListItem",
+    "position": idx + 1,
+    "name": crumb.name,
+    "item": crumb.url
+  }))
+};
+
+// Global Person & ProfessionalService Schema
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${siteUrl}/#person`,
+  "name": "Shishir Khanal",
+  "alternateName": ["Khanal Shishir", "Shishir Khanal Marketer"],
+  "url": siteUrl,
+  "image": `${siteUrl}/images/shishir-profile.jpg`,
+  "jobTitle": "Digital Marketing Strategist & Growth Consultant",
+  "description": "Digital Marketing Strategist and Growth Consultant based in Kathmandu, Nepal. Architecting 360° omnichannel customer acquisition, performance ad engines, and brand authority.",
+  "email": "shishirkhanal1@gmail.com",
+  "telephone": "+9779813978652",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kathmandu",
+    "addressRegion": "Bagmati",
+    "addressCountry": "NP"
+  },
+  "sameAs": [
+    "https://wa.me/9779813978652",
+    "https://github.com/shishirkhanal1",
+    siteUrl
+  ],
+  "knowsAbout": [
+    "Digital Marketing Strategy",
+    "Search Engine Optimization (SEO)",
+    "Performance Marketing",
+    "Meta Ads",
+    "Google Ads",
+    "TikTok Advertising",
+    "Brand Positioning",
+    "Conversion Rate Optimization (CRO)",
+    "Marketing Automation",
+    "Content Strategy"
+  ]
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  "name": "Shishir Khanal",
+  "url": siteUrl,
+  "description": description,
+  "publisher": {
+    "@id": `${siteUrl}/#person`
+  },
+  "inLanguage": "en-US"
+};
+
+const professionalServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": `${siteUrl}/#service`,
+  "name": "Shishir Khanal Growth Consultancy",
+  "url": siteUrl,
+  "image": `${siteUrl}/images/shishir-profile.jpg`,
+  "telephone": "+9779813978652",
+  "email": "shishirkhanal1@gmail.com",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kathmandu",
+    "addressRegion": "Bagmati",
+    "addressCountry": "NP"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 27.7172,
+    "longitude": 85.3240
+  },
+  "areaServed": [
+    { "@type": "Country", "name": "Nepal" },
+    { "@type": "AdministrativeArea", "name": "Worldwide" }
+  ]
+};
+
+const combinedSchemas = [
+  personSchema,
+  websiteSchema,
+  professionalServiceSchema,
+  breadcrumbSchema,
+  ...(schema ? (Array.isArray(schema) ? schema : [schema]) : [])
+];
 ---
 
 <!doctype html>
@@ -27,6 +154,14 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://khanalshishir.com.np')
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
+    <!-- Google Fonts Preconnect for Core Web Vitals (LCP/FCP) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap"
+    />
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2306080d'/><text x='50' y='65' font-size='50' font-family='monospace' font-weight='bold' fill='%2300f0ff' text-anchor='middle'>SK</text></svg>" />
     <meta name="generator" content={Astro.generator} />
@@ -35,33 +170,50 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://khanalshishir.com.np')
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <meta name="keywords" content="Shishir Khanal, digital marketing Nepal, marketing strategist Kathmandu, growth consultant Nepal, SEO Nepal, performance marketing Nepal, brand building Nepal, content strategy, khanalshishir.com.np" />
+    <meta name="keywords" content={keywords} />
     <meta name="author" content="Shishir Khanal" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href={canonicalURL} />
 
+    <!-- Local & Geographic SEO Meta Tags -->
+    <meta name="geo.region" content="NP-BA" />
+    <meta name="geo.placename" content="Kathmandu, Nepal" />
+    <meta name="geo.position" content="27.7172;85.3240" />
+    <meta name="ICBM" content="27.7172, 85.3240" />
+
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content="Shishir Khanal // Digital Marketing Strategist" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, canonicalURL)} />
-    <meta property="og:image:alt" content="Shishir Khanal - Digital Marketing Strategist" />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:alt" content="Shishir Khanal - Digital Marketing Strategist & Growth Consultant" />
     <meta property="og:locale" content="en_US" />
 
-    <!-- Twitter -->
+    <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={canonicalURL} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL(image, canonicalURL)} />
+    <meta name="twitter:image" content={ogImageUrl} />
     <meta name="twitter:image:alt" content="Shishir Khanal" />
 
     <!-- Theme Colors -->
     <meta name="theme-color" content="#06080d" />
     <meta name="msapplication-navbutton-color" content="#06080d" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- AI Engine & LLM Directives -->
+    <link rel="help" href="/llms.txt" type="text/plain" />
+
+    <!-- JSON-LD Structured Data Schema -->
+    {combinedSchemas.map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
   </head>
   <body class="min-h-screen flex flex-col relative tech-grid text-slate-100">
     <div id="top"></div>

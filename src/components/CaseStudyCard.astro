@@ -17,9 +17,12 @@ const { logId, category, metric, title, description, tags, image } = Astro.props
   <div class="relative h-56 sm:h-64 w-full overflow-hidden bg-dark-950">
     <img
       src={image}
-      alt={title}
-      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+      alt={`${title} - Case Study by Shishir Khanal`}
+      width="600"
+      height="360"
       loading="lazy"
+      decoding="async"
+      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100"
     />
     <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/40 to-transparent"></div>
     
