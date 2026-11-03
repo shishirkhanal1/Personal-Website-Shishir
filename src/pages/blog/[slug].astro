@@ -1,0 +1,287 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { blogPosts } from '../../data/blogPosts';
+import type { BlogPost } from '../../data/blogPosts';
+import { renderMarkdown } from '../../utils/markdown';
+
+export function getStaticPaths() {
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+
+const renderedContent = renderMarkdown(post.content);
+
+const otherPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 2);
+
+const siteUrl = 'https://khanalshishir.com.np';
+const postUrl = `${siteUrl}/blog/${post.slug}`;
+const imageUrl = `${siteUrl}${post.coverImage}`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.title,
+  "description": post.excerpt,
+  "image": imageUrl,
+  "url": postUrl,
+  "datePublished": "2026-11-03T10:00:00+05:45",
+  "dateModified": "2026-11-03T10:00:00+05:45",
+  "author": {
+    "@type": "Person",
+    "name": "Shishir Khanal",
+    "url": siteUrl,
+    "jobTitle": "Digital Marketing Strategist & Growth Consultant"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Shishir Khanal",
+    "url": siteUrl,
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${siteUrl}/images/shishir-profile.jpg`
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": postUrl
+  },
+  "keywords": post.tags.join(', ')
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: siteUrl },
+  { name: 'Blog', url: `${siteUrl}/blog` },
+  { name: post.title, url: postUrl }
+];
+---
+
+<Layout
+  title={`${post.title} | Shishir Khanal`}
+  description={post.excerpt}
+  image={post.coverImage}
+  currentPath={`/blog/${post.slug}`}
+  type="article"
+  schema={articleSchema}
+  breadcrumbs={breadcrumbs}
+  keywords={post.tags.join(', ')}
+>
+  <article class="relative pt-12 pb-24 md:pt-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumb Bar -->
+      <nav class="flex items-center gap-2 text-xs font-mono text-slate-400 mb-8 overflow-x-auto whitespace-nowrap">
+        <a href="/" class="hover:text-cyan transition-colors">Home</a>
+        <span>/</span>
+        <a href="/blog" class="hover:text-cyan transition-colors">Blog</a>
+        <span>/</span>
+        <span class="text-cyan truncate max-w-[280px] sm:max-w-md">{post.title}</span>
+      </nav>
+
+      <!-- Post Header -->
+      <header class="space-y-6">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="px-3 py-1 rounded-full bg-cyan/10 border border-cyan/40 text-cyan text-xs font-mono font-bold uppercase tracking-wider">
+            {post.category}
+          </span>
+          <span class="px-3 py-1 rounded-full bg-dark-900 border border-white/10 text-slate-300 text-xs font-mono">
+            ⏱️ {post.readTime}
+          </span>
+          <span class="px-3 py-1 rounded-full bg-dark-900 border border-white/10 text-slate-400 text-xs font-mono">
+            {post.publishDate}
+          </span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold text-white tracking-tight leading-[1.1]">
+          {post.title}
+        </h1>
+
+        <p class="text-lg sm:text-xl text-slate-300 leading-relaxed font-light">
+          {post.excerpt}
+        </p>
+
+        <!-- Author Byline -->
+        <div class="pt-4 pb-2 border-y border-white/10 flex items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <img
+              src="/images/shishir-profile.jpg"
+              alt="Shishir Khanal"
+              width="48"
+              height="48"
+              class="w-12 h-12 rounded-full object-cover border border-cyan/50"
+            />
+            <div>
+              <div class="font-display font-bold text-white text-sm sm:text-base">
+                Shishir Khanal
+              </div>
+              <div class="text-xs font-mono text-cyan">
+                Growth Consultant & Marketer
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <a
+              href="https://wa.me/9779813978652"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono hover:bg-emerald-500/20 transition-all"
+            >
+              <span>Discuss Growth</span>
+              <span>💬</span>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Key Metrics Strip (if available) -->
+      {post.metrics && post.metrics.length > 0 && (
+        <section class="my-10 p-6 sm:p-8 rounded-3xl bg-dark-900/90 border border-cyan/30 shadow-card relative overflow-hidden">
+          <div class="badge-cyan mb-4">
+            <span>VERIFIED PERFORMANCE TELEMETRY</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            {post.metrics.map((m) => (
+              <div class="p-3 rounded-xl bg-dark-950/80 border border-white/5">
+                <span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-0.5">
+                  {m.label}
+                </span>
+                <span class="text-lg sm:text-xl font-mono font-bold text-cyan">
+                  {m.value}
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- Featured Cover Visual -->
+      <div class="my-10 relative rounded-3xl overflow-hidden bg-dark-950 border border-white/15 shadow-2xl">
+        <img
+          src={post.coverImage}
+          alt={post.title}
+          width="1200"
+          height="675"
+          loading="eager"
+          decoding="async"
+          class="w-full h-auto object-cover aspect-[16/9]"
+        />
+        <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-[11px] font-mono text-slate-400 bg-dark-950/70 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
+          <span>Abstract Concept Visualisation</span>
+          <span class="text-cyan">Case Study Asset #01</span>
+        </div>
+      </div>
+
+      <!-- Post Content Body -->
+      <div class="prose prose-invert max-w-none text-slate-300">
+        <div set:html={renderedContent} />
+      </div>
+
+      <!-- Social Backlinks & Instagram Mention Callout -->
+      <div class="my-12 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-dark-900 via-dark-850 to-dark-900 border border-cyan/40">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <span class="text-xs font-mono text-cyan uppercase tracking-wider font-bold">Live Social Backlink</span>
+            <h4 class="font-display font-bold text-white text-lg">
+              Explore the Dogendra Universe on Instagram
+            </h4>
+            <p class="text-xs sm:text-sm text-slate-300">
+              Follow the daily skits, character dynamics, and algorithmic experiments live on Instagram:
+            </p>
+          </div>
+          <a
+            href="https://www.instagram.com/dogendrabhaiya/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white font-mono text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-all self-start sm:self-auto flex-shrink-0 shadow-lg"
+          >
+            <span>@dogendrabhaiya</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Article Tags -->
+      <div class="my-8 pt-6 border-t border-white/10 flex flex-wrap items-center gap-2">
+        <span class="text-xs font-mono uppercase text-slate-400 mr-2">Filed Under:</span>
+        {post.tags.map((tag) => (
+          <span class="px-3 py-1 rounded-lg bg-dark-900 border border-white/10 text-xs font-mono text-slate-300">
+            #{tag}
+          </span>
+        ))}
+      </div>
+
+      <!-- Author Bio Box -->
+      <div class="my-12 p-6 sm:p-8 rounded-3xl bg-dark-900/90 border border-white/15 flex flex-col sm:flex-row items-center gap-6">
+        <img
+          src="/images/shishir-profile.jpg"
+          alt="Shishir Khanal"
+          width="96"
+          height="96"
+          class="w-24 h-24 rounded-2xl object-cover border-2 border-cyan shadow-glow-cyan-sm flex-shrink-0"
+        />
+        <div class="space-y-2 text-center sm:text-left">
+          <span class="text-xs font-mono uppercase tracking-wider text-cyan font-bold block">Written by Shishir Khanal</span>
+          <h4 class="font-display font-bold text-xl text-white">
+            Digital Marketing Strategist & Growth Consultant
+          </h4>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Based in Kathmandu, Nepal. I architect scalable customer acquisition engines, deploy high-converting creative testing frameworks, and advise founders across South Asia and global markets.
+          </p>
+          <div class="pt-2 flex flex-wrap justify-center sm:justify-start gap-4 text-xs font-mono">
+            <a href="/about" class="text-cyan hover:underline">Full Bio & Trajectory →</a>
+            <a href="/services" class="text-slate-300 hover:text-white">Services & Strategy →</a>
+            <a href="/contact" class="text-emerald-400 hover:underline">Get in Touch →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related Case Studies -->
+      {otherPosts.length > 0 && (
+        <section class="mt-16 pt-12 border-t border-white/10">
+          <div class="flex items-center justify-between mb-8">
+            <h3 class="font-display font-bold text-2xl text-white">
+              More Growth Case Studies
+            </h3>
+            <a href="/blog" class="text-xs font-mono text-cyan hover:underline">
+              View All Insights →
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {otherPosts.map((op) => (
+              <a
+                href={`/blog/${op.slug}`}
+                class="glass-card-hover p-5 rounded-2xl group flex flex-col justify-between"
+              >
+                <div>
+                  <span class="text-[10px] font-mono text-cyan uppercase tracking-wider block mb-2 font-bold">
+                    {op.category}
+                  </span>
+                  <h4 class="font-display font-bold text-base text-white group-hover:text-cyan transition-colors leading-snug">
+                    {op.title}
+                  </h4>
+                  <p class="mt-2 text-xs text-slate-300 line-clamp-2">
+                    {op.excerpt}
+                  </p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-400">
+                  <span>{op.readTime}</span>
+                  <span class="text-cyan font-bold group-hover:translate-x-1 transition-transform">Read →</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
+    </div>
+  </article>
+</Layout>

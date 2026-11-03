@@ -4,6 +4,7 @@ import StatCounter from '../components/StatCounter.astro';
 import IndustryExplorer from '../components/IndustryExplorer.astro';
 import CaseStudyCard from '../components/CaseStudyCard.astro';
 import ContactForm from '../components/ContactForm.astro';
+import BlogCarousel from '../components/BlogCarousel.astro';
 
 const caseStudies = [
   {
@@ -386,6 +387,13 @@ const skills = [
       <div class="mt-6 text-xs font-mono uppercase tracking-widest text-slate-400">
         FULL STACK MARKETING // STRATEGY • CREATIVE • PERFORMANCE
       </div>
+    </div>
+  </section>
+
+  <!-- Side-Scrollable Blog & Field Notes Carousel -->
+  <section class="py-20 border-t border-white/10 bg-dark-950/60 overflow-hidden" id="insights">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <BlogCarousel />
     </div>
   </section>
 

@@ -1,0 +1,108 @@
+---
+import BlogCard from './BlogCard.astro';
+import { blogPosts } from '../data/blogPosts';
+---
+
+<div class="relative w-full">
+  <!-- Section Header with Controls -->
+  <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+    <div>
+      <div class="badge-cyan mb-2.5">
+        <span>CASE STUDIES & INSIGHTS // THE LAB NOTEBOOK</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-white tracking-tight">
+        Field Notes from the Growth Frontlines.
+      </h2>
+      <p class="mt-2 text-sm sm:text-base text-slate-300 max-w-2xl">
+        Real case studies, algorithm deconstructions, and battle-tested frameworks from scaling campaigns across South Asia and beyond.
+      </p>
+    </div>
+
+    <!-- Navigation Arrows & View All Link -->
+    <div class="flex items-center gap-3 self-start sm:self-auto">
+      <div class="flex items-center gap-2">
+        <button
+          id="blog-prev-btn"
+          type="button"
+          aria-label="Scroll left"
+          class="w-10 h-10 rounded-xl bg-dark-900 border border-white/10 text-slate-300 hover:text-cyan hover:border-cyan hover:bg-dark-850 flex items-center justify-center transition-all disabled:opacity-30 disabled:pointer-events-none"
+        >
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button
+          id="blog-next-btn"
+          type="button"
+          aria-label="Scroll right"
+          class="w-10 h-10 rounded-xl bg-dark-900 border border-white/10 text-slate-300 hover:text-cyan hover:border-cyan hover:bg-dark-850 flex items-center justify-center transition-all disabled:opacity-30 disabled:pointer-events-none"
+        >
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      <a
+        href="/blog"
+        class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-dark-900 border border-white/15 text-xs font-mono font-bold uppercase text-white hover:text-cyan hover:border-cyan transition-all"
+      >
+        <span>All Articles</span>
+        <span>→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Side-Scrollable Carousel Container -->
+  <div class="relative -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+    <div
+      id="blog-track"
+      class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-6 pt-2 no-scrollbar"
+      style="scrollbar-width: thin; scrollbar-color: rgba(0, 240, 255, 0.4) transparent;"
+    >
+      {blogPosts.map((post) => (
+        <div class="w-[320px] sm:w-[380px] md:w-[420px] flex-shrink-0 snap-start">
+          <BlogCard post={post} />
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Mobile View All Button -->
+  <div class="mt-4 sm:hidden text-center">
+    <a
+      href="/blog"
+      class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-dark-900 border border-white/15 text-xs font-mono font-bold uppercase text-white hover:text-cyan hover:border-cyan transition-all"
+    >
+      <span>Browse All Articles & Breakdowns</span>
+      <span>→</span>
+    </a>
+  </div>
+</div>
+
+<script>
+  const track = document.getElementById('blog-track');
+  const prevBtn = document.getElementById('blog-prev-btn') as HTMLButtonElement | null;
+  const nextBtn = document.getElementById('blog-next-btn') as HTMLButtonElement | null;
+
+  if (track && prevBtn && nextBtn) {
+    const scrollStep = 380;
+
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      track.scrollBy({ left: scrollStep, behavior: 'smooth' });
+    });
+
+    const updateButtonStates = () => {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      prevBtn.disabled = track.scrollLeft <= 5;
+      nextBtn.disabled = track.scrollLeft >= maxScroll - 5;
+    };
+
+    track.addEventListener('scroll', updateButtonStates, { passive: true });
+    updateButtonStates();
+  }
+</script>

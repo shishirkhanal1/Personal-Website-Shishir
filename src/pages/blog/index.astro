@@ -1,0 +1,133 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { blogPosts } from '../../data/blogPosts';
+
+const allCategories = ['All', ...Array.from(new Set(blogPosts.map((p) => p.category)))];
+
+const blogIndexSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Growth Case Studies & Marketing Insights | Shishir Khanal",
+  "description": "Original growth marketing case studies, viral distribution strategies, AI workflows, and full-funnel architectures by Shishir Khanal.",
+  "url": "https://khanalshishir.com.np/blog",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": blogPosts.map((post, idx) => ({
+      "@type": "ListItem",
+      "position": idx + 1,
+      "url": `https://khanalshishir.com.np/blog/${post.slug}`,
+      "name": post.title
+    }))
+  }
+};
+---
+
+<Layout
+  title="Blog & Growth Case Studies | Shishir Khanal"
+  description="Explore original growth marketing case studies, AI content workflows, algorithmic distribution breakdowns, and performance marketing playbooks by Shishir Khanal."
+  currentPath="/blog"
+  schema={blogIndexSchema}
+>
+  <!-- Page Header -->
+  <section class="pt-16 pb-14 md:pt-24 md:pb-20 border-b border-white/10 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="badge-cyan mb-3">
+          <span>THE GROWTH LAB // BLOG & FIELD NOTES</span>
+        </div>
+        <h1 class="text-4xl sm:text-6xl font-display font-extrabold text-white tracking-tight leading-tight">
+          Battle-tested <span class="text-gradient-cyan">insights</span> & growth case studies.
+        </h1>
+        <p class="mt-6 text-lg sm:text-xl text-slate-300 leading-relaxed font-light">
+          No generic advice. Every breakdown is derived from actual campaigns, real media spend, and live organic experiments spanning AI, performance advertising, and full-funnel strategy.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Listing Grid -->
+  <section class="py-16 md:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Category Pills Filter Bar -->
+      <div class="flex flex-wrap items-center gap-2 mb-12">
+        {allCategories.map((cat, idx) => (
+          <button
+            type="button"
+            class={`category-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-mono tracking-wide transition-all ${
+              idx === 0
+                ? 'bg-cyan text-black font-bold shadow-glow-cyan-sm'
+                : 'bg-dark-900 border border-white/10 text-slate-300 hover:text-white hover:border-cyan/40'
+            }`}
+            data-category={cat}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <!-- Articles Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-grid">
+        {blogPosts.map((post) => (
+          <div class="post-item" data-category={post.category}>
+            <BlogCard post={post} />
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Direct Consultation CTA -->
+  <section class="py-16 border-t border-white/10 bg-dark-950/80 text-center">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
+      <div class="badge-emerald">
+        <span>LOOKING TO SCALE YOUR OWN BRAND?</span>
+      </div>
+      <h2 class="text-2xl sm:text-4xl font-display font-extrabold text-white">
+        Let's build an acquisition engine tailored to your market.
+      </h2>
+      <p class="text-sm sm:text-base text-slate-300">
+        From rapid viral testing to full-funnel performance marketing and conversion rate optimization.
+      </p>
+      <div class="pt-2">
+        <a
+          href="/contact"
+          class="px-8 py-3.5 rounded-xl bg-cyan text-black font-mono font-bold text-xs uppercase tracking-wider hover:shadow-glow-cyan transition-all inline-block"
+        >
+          Initialize Transmission →
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const filterBtns = document.querySelectorAll('.category-filter-btn');
+  const postItems = document.querySelectorAll('.post-item') as NodeListOf<HTMLElement>;
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const selectedCat = btn.getAttribute('data-category');
+
+      // Update active button state
+      filterBtns.forEach((b) => {
+        b.classList.remove('bg-cyan', 'text-black', 'font-bold', 'shadow-glow-cyan-sm');
+        b.classList.add('bg-dark-900', 'border', 'border-white/10', 'text-slate-300');
+      });
+      btn.classList.remove('bg-dark-900', 'border', 'border-white/10', 'text-slate-300');
+      btn.classList.add('bg-cyan', 'text-black', 'font-bold', 'shadow-glow-cyan-sm');
+
+      // Filter cards
+      postItems.forEach((item) => {
+        const itemCat = item.getAttribute('data-category');
+        if (selectedCat === 'All' || itemCat === selectedCat) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

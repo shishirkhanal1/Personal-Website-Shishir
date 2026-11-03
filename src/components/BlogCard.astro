@@ -1,0 +1,100 @@
+---
+import type { BlogPost } from '../data/blogPosts';
+
+interface Props {
+  post: BlogPost;
+  compact?: boolean;
+}
+
+const { post, compact = false } = Astro.props;
+---
+
+<article class="glass-card-hover group flex flex-col h-full overflow-hidden transition-all duration-300">
+  <!-- Card Image & Overlay Badges -->
+  <a href={`/blog/${post.slug}`} class="relative block overflow-hidden aspect-[16/9] bg-dark-950">
+    <img
+      src={post.coverImage}
+      alt={post.title}
+      width="600"
+      height="338"
+      loading="lazy"
+      decoding="async"
+      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-85 group-hover:opacity-100"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/30 to-transparent"></div>
+
+    <!-- Category Badge -->
+    <div class="absolute top-3 left-3 flex items-center gap-2">
+      <span class="px-2.5 py-1 rounded-md bg-dark-950/90 border border-cyan/40 font-mono text-[11px] text-cyan font-bold tracking-wider uppercase backdrop-blur-md">
+        {post.category}
+      </span>
+      {post.featured && (
+        <span class="px-2.5 py-1 rounded-md bg-emerald-500/20 border border-emerald-500/50 font-mono text-[11px] text-emerald-300 font-bold backdrop-blur-md">
+          ⚡ FEATURED CASE
+        </span>
+      )}
+    </div>
+
+    <!-- Reading Time -->
+    <div class="absolute bottom-3 right-3">
+      <span class="px-2.5 py-1 rounded-md bg-dark-950/80 border border-white/10 font-mono text-[10px] text-slate-300 backdrop-blur-md">
+        ⏱️ {post.readTime}
+      </span>
+    </div>
+  </a>
+
+  <!-- Content Body -->
+  <div class="p-6 flex flex-col flex-1 justify-between">
+    <div>
+      <div class="flex items-center gap-2 text-xs font-mono text-slate-400 mb-2.5">
+        <span>{post.publishDate}</span>
+        <span>•</span>
+        <span class="text-slate-300">By Shishir Khanal</span>
+      </div>
+
+      <h3 class="font-display font-bold text-lg sm:text-xl text-white group-hover:text-cyan transition-colors line-clamp-2 leading-snug">
+        <a href={`/blog/${post.slug}`}>
+          {post.title}
+        </a>
+      </h3>
+
+      <p class="mt-2.5 text-xs sm:text-sm text-slate-300 line-clamp-3 leading-relaxed">
+        {post.excerpt}
+      </p>
+    </div>
+
+    <!-- Metrics or Tags footer -->
+    <div class="mt-5 pt-4 border-t border-white/10">
+      {post.metrics && post.metrics.length > 0 ? (
+        <div class="grid grid-cols-2 gap-2 mb-3 p-2 rounded-lg bg-dark-950/60 border border-white/5 font-mono text-[11px]">
+          <div>
+            <span class="text-slate-400 block text-[9px] uppercase">{post.metrics[0].label}</span>
+            <span class="text-cyan font-bold">{post.metrics[0].value}</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block text-[9px] uppercase">{post.metrics[1].label}</span>
+            <span class="text-emerald-400 font-bold">{post.metrics[1].value}</span>
+          </div>
+        </div>
+      ) : null}
+
+      <div class="flex items-center justify-between">
+        <div class="flex flex-wrap gap-1.5">
+          {post.tags.slice(0, 2).map((tag) => (
+            <span class="px-2 py-0.5 rounded bg-dark-800 text-[10px] font-mono text-slate-400">
+              #{tag}
+            </span>
+          ))}
+        </div>
+
+        <a
+          href={`/blog/${post.slug}`}
+          class="inline-flex items-center gap-1 text-xs font-mono font-bold text-cyan hover:underline group/link"
+        >
+          <span>Read Case</span>
+          <span class="group-hover/link:translate-x-1 transition-transform">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</article>

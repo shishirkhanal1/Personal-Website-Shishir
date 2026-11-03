@@ -14,9 +14,12 @@
 - Home: https://khanalshishir.com.np/ — Overview of growth frameworks, metrics, and core services.
 - About: https://khanalshishir.com.np/about — Professional bio, operating philosophy ("Marketing is about people, not platforms"), and track record.
 - Services: https://khanalshishir.com.np/services — 6 Core Propulsion Engines (Digital Strategy, Performance Marketing, Brand Building, Storytelling, Team Leadership, Business Growth Consulting).
+- Blog: https://khanalshishir.com.np/blog — Growth case studies, viral distribution strategies, and algorithmic blueprints.
+- Dogendra Case Study: https://khanalshishir.com.np/blog/dogendra-ai-viral-case-study — How an AI character drove 25M+ views and 20K followers in 60 days on Instagram (@dogendrabhaiya).
 - Contact: https://khanalshishir.com.np/contact — Direct transmission deck, FAQs, and contact coordinates.
 
 ## Selected Case Studies & Proven Metrics
+- AI Viral Character Scale-Up (Dogendra / @dogendrabhaiya): 25.4M+ Organic Views, 20,000+ Followers in 60 Days via ChatGPT, Google Flow, Dola AI, and 97% Indian audience cultural arbitrage.
 - Higher-Ed Enrollment Propulsion: 3.8x Student Enrollments via organic SEO and automated WhatsApp nurturing.
 - Healthcare Network Authority: 4.2x Appointment Intake via patient trust architecture and localized Google Search dominance.
 - D2C Retail Scale-Up: 5.2x Peak ROAS via omnichannel paid advertising on Meta & TikTok with retention recovery flows.
